@@ -90,3 +90,25 @@ bool HashTableList::find(int key, int& value) {
     return false;
 }
 
+bool HashTableList::remove(int key) {
+    int index = hashFunction(key, capacity);
+
+    Node* current = buckets[index];
+    Node* previous = nullptr;
+
+    while (current != nullptr) {
+        if (current->key == key) {
+            if (previous == nullptr) {
+                buckets[index] = current->next;
+            }
+
+            delete current;
+            return true;
+        }
+
+        previous = current;
+        current = current->next;
+    }
+
+    return false;
+}

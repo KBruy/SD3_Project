@@ -22,6 +22,7 @@ class HashTableList {
         void insert(int key, int value);
 
         bool find(int key, int& value);
+        bool remove(int key);
 };
 
 #endif

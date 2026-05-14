@@ -19,6 +19,9 @@ class HashTableOpen {
         void print();
 
         bool insert(int key, int value);
+
+        bool find(int key, int& value);
+        
 };
 
 #endif

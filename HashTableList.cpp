@@ -100,6 +100,8 @@ bool HashTableList::remove(int key) {
         if (current->key == key) {
             if (previous == nullptr) {
                 buckets[index] = current->next;
+            } else {
+                previous->next = current->next;
             }
 
             delete current;

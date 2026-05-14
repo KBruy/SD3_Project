@@ -18,6 +18,8 @@ class HashTableList {
         ~HashTableList();
 
         void print();
+
+        void insert(int key, int value);
 };
 
 #endif

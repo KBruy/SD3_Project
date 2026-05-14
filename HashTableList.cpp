@@ -3,6 +3,14 @@
 
 using namespace std;
 
+int hashFunction(int key, int capacity){
+    if (key < 0) {
+        key = -key;
+    }
+
+    return key % capacity;
+}
+
 HashTableList::HashTableList(int tableCapacity) {
     capacity = tableCapacity;
     buckets = new Node*[capacity];
@@ -43,3 +51,17 @@ void HashTableList::print() {
         cout << "nullptr" << endl;
     }
 }
+
+void HashTableList::insert(int key, int value) {
+    int index = hashFunction(key, capacity);
+
+    Node* newNode = new Node;
+    newNode->key = key;
+    newNode->value = value;
+    newNode->next = buckets[index];
+
+    buckets[index] = newNode;
+}
+
+
+

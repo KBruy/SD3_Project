@@ -22,6 +22,10 @@ int main() {
         switch(choice){
             case 1: {
                 HashTableList table(10);
+
+                table.insert(5, 100);
+                table.insert(15,200);
+                
                 table.print();
                 break;
             }

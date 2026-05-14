@@ -1,5 +1,7 @@
 #include <iostream>
 #include "HashTableList.h"
+#include "HashTableOpen.h"
+
 using namespace std;
 
 void showMainMenu() {
@@ -113,9 +115,17 @@ int main() {
                break;
             }
 
-            case 2:
-            cout <<"Wybrano HashTableOpen"<<endl;
-            break;
+            case 2: {
+                int capacity;
+
+                cout << "Podaj rozmiar tablicy: ";
+                cin >> capacity;
+
+                HashTableOpen table(capacity);
+                table.print();
+
+                break;
+            }
 
             case 3:
             cout <<"Wybrano HashTableAVL"<<endl;

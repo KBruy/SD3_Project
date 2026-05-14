@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include "HashTableList.h"
 using namespace std;
 
 void showMainMenu() {
@@ -20,9 +20,11 @@ int main() {
         showMainMenu();
         cin>>choice;
         switch(choice){
-            case 1:
-            cout << "Wybrano HashTableList"<<endl;
-            break;
+            case 1: {
+                HashTableList table(10);
+                table.print();
+                break;
+            }
 
             case 2:
             cout <<"Wybrano HashTableOpen"<<endl;

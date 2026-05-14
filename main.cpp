@@ -13,6 +13,61 @@ void showMainMenu() {
 
 }
 
+void showHashTableListMenu() {
+    cout <<endl;
+    cout <<"===== HASHTABLE LIST ====="<<endl;
+    cout << "1. Dodaj element"<<endl;
+    cout <<"3. Wyswietl tablice" << endl;
+    cout << "0. Powrot"<<endl;
+}
+
+void runHashTableListMenu() {
+   int capacity;
+
+   cout << "podaj rozmiar tablicy: ";
+   cin >> capacity;
+   
+   HashTableList table(capacity);
+
+   int choice;
+
+   do {
+    showHashTableListMenu();
+    cin >> choice;
+
+    switch (choice) {
+        case 1: {
+            int key;
+            int value;
+
+            cout << "Podaj klucz: ";
+            cin >> key;
+            
+            cout << "Podaj wartosc";
+            cin >> value;
+
+            table.insert(key, value);
+
+            cout << "Dodano element" << endl;
+            break;
+        }
+
+        case 3:
+            table.print();
+            break;
+
+        case 0:
+            cout << "Powrot do menu glownego" << endl;
+            break;
+
+        default:
+        cout << "Niepoprawny wybor" << endl;
+        break;
+        
+    }
+   } while (choice != 0);
+}
+
 int main() {
     int choice;
 
@@ -21,13 +76,8 @@ int main() {
         cin>>choice;
         switch(choice){
             case 1: {
-                HashTableList table(10);
-
-                table.insert(5, 100);
-                table.insert(15,200);
-                
-                table.print();
-                break;
+               runHashTableListMenu();
+               break;
             }
 
             case 2:

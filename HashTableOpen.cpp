@@ -35,3 +35,33 @@ void HashTableOpen::print() {
         cout << endl;
     }
 }
+
+int hashOpenFunction(int key, int capacity) { //funckja haszująca
+    if ( key < 0) {
+        key = -key;
+    }
+
+    return key % capacity;
+}
+
+bool HashTableOpen::insert(int key, int value) {
+    int index = hashOpenFunction(key, capacity);
+
+    for (int i = 0; i<capacity; i++) {
+        int currentIndex = (index + i) % capacity;
+
+        if (table[currentIndex].state == 1 && table[currentIndex].key == key){
+            table[currentIndex].value = value;
+            return true;
+        }
+
+        if (table[currentIndex].state == 0 || table[currentIndex].state == 2) {
+            table[currentIndex].key = key;
+            table[currentIndex].value = value;
+            table[currentIndex].state = 1;
+            return true;
+        }
+     }
+
+     return false;
+}

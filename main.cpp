@@ -122,6 +122,11 @@ int main() {
                 cin >> capacity;
 
                 HashTableOpen table(capacity);
+
+                table.insert(5, 100);
+                table.insert(15, 200);
+                table.insert(8, 300);
+                table.insert(5, 999);
                 table.print();
 
                 break;

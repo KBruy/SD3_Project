@@ -17,6 +17,8 @@ class HashTableOpen {
         ~HashTableOpen();
 
         void print();
+
+        bool insert(int key, int value);
 };
 
 #endif

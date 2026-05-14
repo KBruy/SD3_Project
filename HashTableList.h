@@ -20,6 +20,8 @@ class HashTableList {
         void print();
 
         void insert(int key, int value);
+
+        bool find(int key, int& value);
 };
 
 #endif

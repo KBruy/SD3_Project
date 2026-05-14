@@ -53,15 +53,40 @@ void HashTableList::print() {
 }
 
 void HashTableList::insert(int key, int value) {
-    int index = hashFunction(key, capacity);
+   int index = hashFunction(key, capacity);
 
-    Node* newNode = new Node;
-    newNode->key = key;
-    newNode->value = value;
-    newNode->next = buckets[index];
+   Node* current = buckets[index];
 
-    buckets[index] = newNode;
+   while ( current != nullptr) {
+    if (current->key == key){
+        current->value = value;
+        return;
+    }
+
+    current = current->next;
+   }
+
+   Node* newNode = new Node;
+   newNode->key = key;
+   newNode->value = value;
+   newNode->next = buckets[index];
+
+   buckets[index] = newNode;
 }
 
+bool HashTableList::find(int key, int& value) {
+    int index = hashFunction(key, capacity);
 
+    Node* current = buckets[index];
+
+    while (current != nullptr) {
+        if (current->key == key) {
+            value = current->value;
+            return true;
+        }
+        current = current->next;
+    }
+
+    return false;
+}
 

@@ -17,6 +17,7 @@ void showHashTableListMenu() {
     cout <<endl;
     cout <<"===== HASHTABLE LIST ====="<<endl;
     cout << "1. Dodaj element"<<endl;
+    cout << "2. Znajdz element"<<endl;
     cout <<"3. Wyswietl tablice" << endl;
     cout << "0. Powrot"<<endl;
 }
@@ -49,6 +50,22 @@ void runHashTableListMenu() {
             table.insert(key, value);
 
             cout << "Dodano element" << endl;
+            break;
+        }
+
+        case 2: {
+            int key;
+            int value;
+
+            cout << "Podaj klucz do znalezienia: ";
+            cin >> key;
+
+            if (table.find(key, value)) {
+                cout << "Znaleziono wartosc: "<<value <<endl;
+            } else {
+                cout << "Nie znaleziono elementu" << endl;
+            }
+
             break;
         }
 

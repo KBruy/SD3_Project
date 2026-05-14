@@ -21,7 +21,7 @@ class HashTableOpen {
         bool insert(int key, int value);
 
         bool find(int key, int& value);
-        
+        bool remove(int key);
 };
 
 #endif

@@ -115,6 +115,7 @@ void showHashTableOpenMenu(){
     cout << "==== HASHTABLE OPEN ====" << endl;
     cout << "1. Dodaj element" << endl;
     cout << "2. Znajdz element" << endl;
+    cout << "3. Usun element" << endl;
     cout << "4. Wyswietl tablice" << endl;
     cout << "0. Powrot"<<endl;
     cout<<"Wybor: ";
@@ -170,7 +171,23 @@ void runHashTableOpenMenu() {
 
                 break;
             } 
-            
+
+            case 3:
+                {
+                    int key;
+
+                    cout << "Podaj klucz do usuniecia: ";
+                    cin >> key;
+
+                    if (table.remove(key)) {
+                        cout << "Usunieto element" << endl;
+                    } else {
+                        cout << "Nie znaleziono elemenut do usuniecia" << endl;
+                    }
+
+                    break;
+                }
+
             case 4:
             table.print();
             break;

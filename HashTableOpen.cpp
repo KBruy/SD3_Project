@@ -84,3 +84,22 @@ bool HashTableOpen::find(int key, int& value){
 
     return false;
 }
+
+bool HashTableOpen::remove(int key) {
+    int index = hashOpenFunction(key, capacity);
+
+    for (int i = 0; i < capacity; i++) {
+        int currentIndex = (index + i) % capacity;
+
+        if (table[currentIndex].state == 0) {
+            return false;
+        }
+
+        if (table[currentIndex].state == 1 && table[currentIndex].key == key) {
+            table [currentIndex].state = 2;
+            return true;
+        }
+    }
+
+    return false;
+}

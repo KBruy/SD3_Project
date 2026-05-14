@@ -14,6 +14,9 @@ void showMainMenu() {
     cout <<"Wybor: ";
 
 }
+//----------------------------------------------
+//HASH TABLE MENU
+//----------------------------------------------
 
 void showHashTableListMenu() {
     cout <<endl;
@@ -103,6 +106,70 @@ void runHashTableListMenu() {
    } while (choice != 0);
 }
 
+//===============================================
+// HASH TABLE OPEN MENU
+//===============================================
+
+void showHashTableOpenMenu(){
+    cout << endl;
+    cout << "==== HASHTABLE OPEN ====" << endl;
+    cout << "1. Dodaj element" << endl;
+    cout << "4. Wyswietl tablice" << endl;
+    cout << "0. Powrot"<<endl;
+    cout<<"Wybor: ";
+}
+
+void runHashTableOpenMenu() {
+    int capacity;
+
+    cout << "Podaj rozmiar tablicy: ";
+    cin >> capacity;
+
+    HashTableOpen table(capacity);
+
+    int choice;
+
+    do {
+        showHashTableOpenMenu();
+        cin >> choice;
+
+        switch (choice) {
+            case 1: {
+                int key;
+                int value;
+
+                cout << "Podaj klucz: ";
+                cin >> key;
+
+                cout <<"Podaj wartosc: ";
+                cin >> value;
+
+                if (table.insert(key, value)) {
+                    cout << "Dodano element"<<endl;
+                }
+                else{
+                    cout << "Nie udalo sie dodac elementu. Tablica jest pelna"<< endl;
+                }
+
+                break;
+            }
+
+            case 2:
+            table.print();
+            break;
+
+            case 0:
+                cout<< "powrot do menu glownego" << endl;
+                break;
+            
+                default:
+                    cout << "Niepoprawny wybor" << endl;
+                    break;
+
+        }
+    } while (choice != 0);
+}
+
 int main() {
     int choice;
 
@@ -116,19 +183,8 @@ int main() {
             }
 
             case 2: {
-                int capacity;
 
-                cout << "Podaj rozmiar tablicy: ";
-                cin >> capacity;
-
-                HashTableOpen table(capacity);
-
-                table.insert(5, 100);
-                table.insert(15, 200);
-                table.insert(8, 300);
-                table.insert(5, 999);
-                table.print();
-
+                runHashTableOpenMenu();
                 break;
             }
 

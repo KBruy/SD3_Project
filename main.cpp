@@ -230,24 +230,28 @@ int main() {
                 tree.insert(20, 200);
                 tree.insert(10, 100);
                 tree.insert(40, 400);
+                tree.insert(35, 350);
 
+                cout << "Przed usunieciem "<<endl;
                 tree.print();
 
-                int value;
-                
-                if (tree.find(20, value)) {
-                    cout << "Znaleziono 20: "<<value<<endl;
-                } else {
-                    cout << "Nie znaleziono 20 "<<endl;
-                }
+                if(tree.remove(20)) {
+                    cout << "Usunieto 20 "<<endl;
+                 } else {
+                    cout << "Nie znaleziono 20" << endl;
+                 }
 
-                if (tree.find(99, value)) {
-                    cout << "Znaleziono 99: " << value << endl;
-                } else{
-                    cout <<"Nie znaleziono 99" << endl;
-                }
+                 cout << "Po usunieciu: " << endl;
+                 tree.print();
 
-                break;
+                 int value;
+                 if(tree.find(20, value)) {
+                    cout << "Znaleziono 20: " << value << endl;
+                 } else {
+                    cout << "Nie znaleziono 20" << endl;
+                 }
+
+                 break;
             }
             
 

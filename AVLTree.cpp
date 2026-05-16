@@ -161,3 +161,76 @@ bool AVLTree::findNode(Node* node, int key, int& value) {
 bool AVLTree::find(int key, int& value) {
     return findNode(root, key, value);
 }
+
+AVLTree::Node* AVLTree::findMin(Node* node) {
+    Node* current = node;
+
+    while (current->left != nullptr) {
+        current = current->left;
+    }
+
+    return current;
+}
+
+AVLTree::Node* AVLTree::removeNode(Node* node, int key, bool& removed) {
+    if (node == nullptr) {
+        return nullptr;
+    }
+
+    if ( key < node->key) {
+        node->left = removeNode(node-> left, key, removed);
+    } else if (key > node->key) {
+        node->right = removeNode(node->right, key, removed);
+    } else {
+        removed = true;
+
+        if (node->left == nullptr || node->right == nullptr) {
+            Node* temp;
+
+            if (node->left != nullptr) {
+                temp = node->left;
+            } else {
+                temp = node->right;
+            }
+
+            delete node;
+            return temp;
+        } else {
+            Node* temp = findMin(node->right);
+
+            node->key = temp->key;
+            node->value = temp->value;
+
+            node->right = removeNode(node->right, temp->key, removed);
+        }
+    }
+
+    node->height = maxValue(getHeight(node->left), getHeight(node->right)) +1;
+    int balance = getBalance(node);
+
+    if (balance > 1 && getBalance(node->left) >= 0) {
+        return rotateRight(node);
+    }
+
+    if (balance > 1 && getBalance(node->right) <= 0) {
+        node->left = rotateLeft(node->left);
+        return rotateRight(node);
+    }
+
+    if (balance < -1 && getBalance(node->right) <= 0) {
+        return rotateLeft(node);
+    }
+
+    if (balance < -1 && getBalance(node->right) > 0) {
+        node->right = rotateRight(node->right);
+        return rotateLeft(node);
+    }
+
+    return node;
+}
+
+bool AVLTree::remove(int key) {
+    bool removed = false;
+    root = removeNode(root, key, removed);
+    return removed;
+}

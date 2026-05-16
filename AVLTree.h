@@ -29,6 +29,10 @@ class AVLTree {
 
         bool findNode(Node* node, int key, int& value);
 
+        //remove
+        Node* findMin(Node* node);
+        Node* removeNode(Node* node, int key, bool& removed);
+
     public:
         AVLTree();
         ~AVLTree();
@@ -38,6 +42,8 @@ class AVLTree {
         void insert(int key, int value);
 
         bool find(int key, int& value);
+
+        bool remove(int key);
 };
 
 #endif

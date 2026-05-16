@@ -225,7 +225,11 @@ int main() {
 
             case 3: {
                 AVLTree tree;
-                cout<<"puste drzewo AVL" <<endl;
+               
+                tree.insert(30, 300);
+                tree.insert(20, 200);
+                tree.insert(10, 100);
+                
                 tree.print();
                 break;
             }

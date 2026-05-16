@@ -15,7 +15,7 @@ class AVLTree {
         Node* root;
 
         void deleteTree(Node* node);
-        void printInOder(Node* node);
+        void printInOrder(Node* node);
 
 
         int getHeight(Node* node);

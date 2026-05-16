@@ -4,15 +4,16 @@
 #include "AVLTree.h"
 
 class HashTableAVL {
-    private:
-        AVLTree* buckets;
-        int capacity;
+private:
+    AVLTree* buckets;
+    int capacity;
 
-    public:
-        HashTableAVL(int tableCapacity);
-        ~HashTableAVL();
+public:
+    HashTableAVL(int tableCapacity);
+    ~HashTableAVL();
 
-        void print();
+    void insert(int key, int value);
+    void print();
 };
 
 #endif

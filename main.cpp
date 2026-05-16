@@ -231,6 +231,13 @@ int main() {
                 cin >> capacity;
 
                 HashTableAVL table(capacity);
+
+                table.insert(5, 100);
+                table.insert(15, 200);
+                table.insert(25, 300);
+                table.insert(8, 800);
+                table.insert(5, 999);
+                
                 table.print();
 
                 break;

@@ -1,6 +1,7 @@
 #include <iostream>
 #include "HashTableList.h"
 #include "HashTableOpen.h"
+#include <AVLTree.h>
 
 using namespace std;
 
@@ -222,8 +223,13 @@ int main() {
                 break;
             }
 
-            case 3:
-            cout <<"Wybrano HashTableAVL"<<endl;
+            case 3: {
+                AVLTree tree;
+                cout<<"puste drzewo AVL" <<endl;
+                tree.print();
+                break;
+            }
+            
 
             case 0:
             cout <<"Koniec programu"<<endl;

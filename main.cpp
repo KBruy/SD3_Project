@@ -206,6 +206,64 @@ void runHashTableOpenMenu() {
     } while (choice != 0);
 }
 
+//===============================
+// Hash Table AVL 
+
+void showHashTableAVLMenu() {
+    cout << endl;
+    cout << "==== HASHTABLE AVL ====" <<endl;
+    cout << "1. Dodaj element" << endl;
+    cout << "2. Wyswietl tablice." << endl;
+    cout << "0. Powrot" << endl;
+    cout << "Wybor: "; 
+}
+
+void runHashTableAVLMenu() {
+    int capacity;
+
+    cout << "Podaj rozmiar tablicy: ";
+    cin >> capacity;
+
+    HashTableAVL table(capacity);
+
+    int choice;
+
+    do{
+        showHashTableAVLMenu();
+        cin >> choice;
+
+        switch (choice) {
+            case 1: {
+                int key;
+                int value;
+
+                cout << "Podaj klucz: ";
+                cin >> key;
+
+                cout << "Podaj wartosc: ";
+                cin >> value;
+
+                table.insert(key, value);
+                cout << "Dodano element" << endl;
+
+                break;
+            }
+
+            case 2:
+                table.print();
+                break;
+
+            case 0:
+                cout << "Powrot do menu glownego" << endl;
+                break;
+
+            default:
+                cout << "Niepoprawny wybor" << endl;
+                break;
+        }
+    } while (choice != 0);
+}
+
 int main() {
     int choice;
 
@@ -225,21 +283,7 @@ int main() {
             }
 
             case 3: {
-                int capacity;
-
-                cout << "podaj rozmiar tablicy: ";
-                cin >> capacity;
-
-                HashTableAVL table(capacity);
-
-                table.insert(5, 100);
-                table.insert(15, 200);
-                table.insert(25, 300);
-                table.insert(8, 800);
-                table.insert(5, 999);
-                
-                table.print();
-
+                runHashTableAVLMenu();
                 break;
             }
             

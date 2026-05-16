@@ -17,12 +17,23 @@ class AVLTree {
         void deleteTree(Node* node);
         void printInOder(Node* node);
 
+
+        int getHeight(Node* node);
+        int getBalance(Node* node);
+        int maxValue(int a, int b);
+
+        Node* rotateRight(Node* y);
+        Node* rotateLeft(Node* x);
+
+        Node* insertNode(Node* node, int key, int value);
+
     public:
         AVLTree();
         ~AVLTree();
 
         void print();
-            
+        
+        void insert(int key, int value);
 };
 
 #endif

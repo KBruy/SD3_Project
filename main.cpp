@@ -233,6 +233,7 @@ int main() {
 
             case 0:
             cout <<"Koniec programu"<<endl;
+            //
 
             default:
             cout <<"Niepoprawny wybor"<<endl;

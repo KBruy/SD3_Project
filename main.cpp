@@ -225,12 +225,28 @@ int main() {
 
             case 3: {
                 AVLTree tree;
-               
+
                 tree.insert(30, 300);
                 tree.insert(20, 200);
                 tree.insert(10, 100);
-                
+                tree.insert(40, 400);
+
                 tree.print();
+
+                int value;
+                
+                if (tree.find(20, value)) {
+                    cout << "Znaleziono 20: "<<value<<endl;
+                } else {
+                    cout << "Nie znaleziono 20 "<<endl;
+                }
+
+                if (tree.find(99, value)) {
+                    cout << "Znaleziono 99: " << value << endl;
+                } else{
+                    cout <<"Nie znaleziono 99" << endl;
+                }
+
                 break;
             }
             

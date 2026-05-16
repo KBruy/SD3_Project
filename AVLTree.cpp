@@ -140,3 +140,24 @@ AVLTree::Node* AVLTree::insertNode(Node* node, int key, int value) {
 void AVLTree::insert(int key, int value) {
     root = insertNode(root, key, value);
 }
+
+bool AVLTree::findNode(Node* node, int key, int& value) {
+    if (node == nullptr) {
+        return false;
+    }
+
+    if (key == node->key) {
+        value = node->value;
+        return true;
+    }
+
+    if (key < node->key) {
+        return findNode(node->left, key, value);
+    }
+
+    return findNode(node->right, key, value);
+}
+
+bool AVLTree::find(int key, int& value) {
+    return findNode(root, key, value);
+}

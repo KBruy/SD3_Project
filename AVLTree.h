@@ -27,6 +27,8 @@ class AVLTree {
 
         Node* insertNode(Node* node, int key, int value);
 
+        bool findNode(Node* node, int key, int& value);
+
     public:
         AVLTree();
         ~AVLTree();
@@ -34,6 +36,8 @@ class AVLTree {
         void print();
         
         void insert(int key, int value);
+
+        bool find(int key, int& value);
 };
 
 #endif

@@ -2,6 +2,7 @@
 #include "HashTableList.h"
 #include "HashTableOpen.h"
 #include <AVLTree.h>
+#include "HashTableAVL.h"
 
 using namespace std;
 
@@ -224,34 +225,15 @@ int main() {
             }
 
             case 3: {
-                AVLTree tree;
+                int capacity;
 
-                tree.insert(30, 300);
-                tree.insert(20, 200);
-                tree.insert(10, 100);
-                tree.insert(40, 400);
-                tree.insert(35, 350);
+                cout << "podaj rozmiar tablicy: ";
+                cin >> capacity;
 
-                cout << "Przed usunieciem "<<endl;
-                tree.print();
+                HashTableAVL table(capacity);
+                table.print();
 
-                if(tree.remove(20)) {
-                    cout << "Usunieto 20 "<<endl;
-                 } else {
-                    cout << "Nie znaleziono 20" << endl;
-                 }
-
-                 cout << "Po usunieciu: " << endl;
-                 tree.print();
-
-                 int value;
-                 if(tree.find(20, value)) {
-                    cout << "Znaleziono 20: " << value << endl;
-                 } else {
-                    cout << "Nie znaleziono 20" << endl;
-                 }
-
-                 break;
+                break;
             }
             
 

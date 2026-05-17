@@ -38,3 +38,14 @@ void HashTableAVL::print(){
     }
 }
 
+bool HashTableAVL::find(int key, int& value) {
+    int index = hashAVLFunction(key, capacity);
+
+    return buckets[index].find(key, value);
+}
+
+bool HashTableAVL::remove(int key) {
+    int index = hashAVLFunction(key, capacity);
+
+    return buckets[index].remove(key);
+}

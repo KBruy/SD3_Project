@@ -14,6 +14,9 @@ public:
 
     void insert(int key, int value);
     void print();
+
+    bool find(int key, int& value);
+    bool remove(int key);
 };
 
 #endif

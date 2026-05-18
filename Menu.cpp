@@ -3,6 +3,8 @@
 #include "HashTableList.h"
 #include "HashTableOpen.h"
 #include "HashTableAVL.h"
+#include "Research.h"
+
 
 using namespace std;
 
@@ -12,6 +14,7 @@ void Menu::showMainMenu() {
     cout << "1. HashTableList" << endl;
     cout << "2. HashTableOpen" << endl;
     cout << "3. HashTableAVL" << endl;
+    cout << "4. Uruchom badania" << endl;
     cout << "0. Wyjscie" << endl;
     cout << "Wybor: ";
 }
@@ -320,6 +323,11 @@ void Menu::run() {
 
             case 3:
                 runHashTableAVLMenu();
+                break;
+
+            case 4:
+                Research research;
+                research.run();
                 break;
 
             case 0:

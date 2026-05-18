@@ -1,0 +1,11 @@
+structure,operation,size,series_count,copies,avg_time_ns
+HashTableList,insert,5000,10,100,21.881
+HashTableList,remove,5000,10,100,32.371
+HashTableList,insert,10000,10,100,22.242
+HashTableList,remove,10000,10,100,31.918
+HashTableList,insert,25000,10,100,21.479
+HashTableList,remove,25000,10,100,33.071
+HashTableList,insert,50000,10,100,23.615
+HashTableList,remove,50000,10,100,44.611
+HashTableList,insert,100000,10,100,23.369
+HashTableList,remove,100000,10,100,60.695

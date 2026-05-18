@@ -113,25 +113,25 @@ AVLTree::Node* AVLTree::insertNode(Node* node, int key, int value) {
     int balance = getBalance(node);
 
     // Left Left
-    if (balance > 1 && key < node->left->key) {
-        return rotateRight(node);
+    if (balance > 1 && getBalance(node->left) >= 0) {
+    return rotateRight(node);
     }
 
     // Right Right
-    if (balance < -1 && key > node->right->key) {
-        return rotateLeft(node);
+    if (balance > 1 && getBalance(node->left) < 0) {
+    node->left = rotateLeft(node->left);
+    return rotateRight(node);
     }
 
     // Left Right
-    if (balance > 1 && key > node->left->key) {
-        node->left = rotateLeft(node->left);
-        return rotateRight(node);
+   if (balance < -1 && getBalance(node->right) <= 0) {
+    return rotateLeft(node);
     }
 
     // Right Left
-    if (balance < -1 && key < node->right->key) {
-        node->right = rotateRight(node->right);
-        return rotateLeft(node);
+    if (balance < -1 && getBalance(node->right) > 0) {
+    node->right = rotateRight(node->right);
+    return rotateLeft(node);
     }
 
     return node;

@@ -31,6 +31,10 @@ class Research {
 
         double measureOpenInsert(int size);
         double measureOpenRemove(int size);
+
+        double measureAVLInsert(int size);
+        double measureAVLRemove(int size);
+
         
     public:
         void run();

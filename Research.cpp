@@ -4,6 +4,7 @@
 #include <chrono>
 #include "HashTableList.h"
 #include "Research.h"
+#include "HashTableOpen.h"
 
 using namespace std;
 using namespace std::chrono;
@@ -67,6 +68,14 @@ void Research::run() {
         cout << "HashTableList remove, size = " << size << endl;
         double avgRemoveTime = measureListRemove(size);
         writeSummaryResult(file, "HashTableList", "remove", size, avgRemoveTime);
+
+        cout << "HashTableOpen insert, size = " << size << endl;
+        double avgOpenInsertTime = measureOpenInsert(size);
+        writeSummaryResult(file, "HashTableOpen", "insert", size, avgOpenInsertTime);
+
+        cout << "HashTableOpen remove, size = " << size << endl;
+        double avgOpenRemoveTime = measureOpenRemove(size);
+        writeSummaryResult(file, "HashTableOpen", "remove", size, avgOpenRemoveTime);
     }
 
     cout << "Zakonczono badania. Wyniki zapisano do results_summary.csv" << endl;
@@ -136,6 +145,80 @@ double Research::measureListRemove(int size) {
             HashTableList table(size * 2);
 
             for (int i = 0; i< size; i++) {
+                table.insert(data[i].key, data[i].value);
+            }
+
+            auto start = high_resolution_clock::now();
+
+            table.remove(keyToRemove);
+
+            auto end = high_resolution_clock::now();
+
+            totalTime += duration_cast<nanoseconds>(end - start).count();
+        }
+
+        delete[] data;
+    }
+
+    return static_cast<double>(totalTime) / (SERIES_COUNT * COPIES_COUNT);
+}
+
+double Research::measureOpenInsert(int size) {
+    long long totalTime = 0;
+
+        for (int series = 0; series < SERIES_COUNT; series++) {
+            int seed = BASE_SEED + series;
+
+            TestElement* data = new TestElement[size];
+            generateData(data, size, seed);
+
+            TestElement newElement;
+
+            do {
+                newElement.key = generateRandomNumber();
+
+            } while (keyExists(data, size, newElement.key));
+
+            newElement.value = generateRandomNumber();
+
+            for (int copy = 0; copy < COPIES_COUNT; copy++) {
+                HashTableOpen table(size * 2);
+
+                for (int i = 0; i < size; i++) {
+                    table.insert(data[i].key, data[i].value);
+                }
+
+                auto start = high_resolution_clock::now();
+
+                table.insert(newElement.key, newElement.value);
+
+                auto end = high_resolution_clock::now();
+
+                totalTime += duration_cast<nanoseconds>(end - start).count();
+            }
+
+            delete[] data;
+        }
+
+        return static_cast<double>(totalTime) / (SERIES_COUNT * COPIES_COUNT);
+    }
+
+
+double Research::measureOpenRemove(int size) {
+    long long totalTime = 0;
+
+    for (int series = 0; series < SERIES_COUNT; series++) {
+        int seed = BASE_SEED + series;
+
+        TestElement* data = new TestElement[size];
+        generateData(data, size, seed);
+
+        int keyToRemove = data[size / 2].key;
+
+        for (int copy = 0; copy < COPIES_COUNT; copy++) {
+            HashTableOpen table(size * 2);
+
+            for (int i = 0; i < size; i++) {
                 table.insert(data[i].key, data[i].value);
             }
 

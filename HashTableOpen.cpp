@@ -46,24 +46,46 @@ int hashOpenFunction(int key, int capacity) { //funckja haszująca
 
 bool HashTableOpen::insert(int key, int value) {
     int index = hashOpenFunction(key, capacity);
+    int firstDeleted = -1;
 
-    for (int i = 0; i<capacity; i++) {
+    for (int i = 0; i < capacity; i++) {
         int currentIndex = (index + i) % capacity;
 
-        if (table[currentIndex].state == 1 && table[currentIndex].key == key){
+        if (table[currentIndex].state == 1 && table[currentIndex].key == key) {
             table[currentIndex].value = value;
             return true;
         }
 
-        if (table[currentIndex].state == 0 || table[currentIndex].state == 2) {
-            table[currentIndex].key = key;
-            table[currentIndex].value = value;
-            table[currentIndex].state = 1;
+        if (table[currentIndex].state == 2 && firstDeleted == -1) {
+            firstDeleted = currentIndex;
+        }
+
+        if (table[currentIndex].state == 0) {
+            int insertIndex;
+
+            if (firstDeleted != -1) {
+                insertIndex = firstDeleted;
+            } else {
+                insertIndex = currentIndex;
+            }
+
+            table[insertIndex].key = key;
+            table[insertIndex].value = value;
+            table[insertIndex].state = 1;
+
             return true;
         }
-     }
+    }
 
-     return false;
+    if (firstDeleted != -1) {
+        table[firstDeleted].key = key;
+        table[firstDeleted].value = value;
+        table[firstDeleted].state = 1;
+
+        return true;
+    }
+
+    return false;
 }
 
 bool HashTableOpen::find(int key, int& value){

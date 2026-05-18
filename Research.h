@@ -24,6 +24,7 @@ class Research {
         void writeCsvHeader(std::ofstream& file);
         void writeSummaryResult(std::ofstream& file, const char* structureName, const char* operationName, int size, double avgTime);
         double measureListInsert(int size);
+        double measureListRemove(int size);
         
     public:
         void run();

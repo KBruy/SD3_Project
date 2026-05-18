@@ -61,10 +61,12 @@ void Research::run() {
         int size = testSizes[i];
 
         cout << "HashTableList insert, size = " << size << endl;
-
         double avgTime = measureListInsert(size);
-
         writeSummaryResult(file, "HashTableList", "insert", size, avgTime);
+
+        cout << "HashTableList remove, size = " << size << endl;
+        double avgRemoveTime = measureListRemove(size);
+        writeSummaryResult(file, "HashTableList", "remove", size, avgRemoveTime);
     }
 
     cout << "Zakonczono badania. Wyniki zapisano do results_summary.csv" << endl;
@@ -106,6 +108,40 @@ double Research::measureListInsert(int size) {
             auto start = high_resolution_clock::now();
 
             table.insert(newElement.key, newElement.value);
+
+            auto end = high_resolution_clock::now();
+
+            totalTime += duration_cast<nanoseconds>(end - start).count();
+        }
+
+        delete[] data;
+    }
+
+    return static_cast<double>(totalTime) / (SERIES_COUNT * COPIES_COUNT);
+}
+
+
+double Research::measureListRemove(int size) {
+    long long totalTime = 0;
+
+    for (int series = 0; series < SERIES_COUNT; series++) {
+        int seed = BASE_SEED + series;
+
+        TestElement* data = new TestElement[size];
+        generateData(data, size, seed);
+
+        int keyToRemove = data[size / 2].key;
+
+        for (int copy = 0; copy < COPIES_COUNT; copy++) {
+            HashTableList table(size * 2);
+
+            for (int i = 0; i< size; i++) {
+                table.insert(data[i].key, data[i].value);
+            }
+
+            auto start = high_resolution_clock::now();
+
+            table.remove(keyToRemove);
 
             auto end = high_resolution_clock::now();
 

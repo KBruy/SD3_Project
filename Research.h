@@ -1,6 +1,8 @@
 #ifndef RESEARCH_H
 #define RESEARCH_H
 
+#include <fstream>
+
 class Research {
     private:
         static const int MAX_VALUE = 16777215;
@@ -15,6 +17,8 @@ class Research {
         int generateRandomNumber();
         bool keyExists(TestElement* data, int currentSize, int key);
         void generateData(TestElement* data, int size, int seed);
+
+        void writeCsvHeader(std::ofstream& file);
         
     public:
         void run();

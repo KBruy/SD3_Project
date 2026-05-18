@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib>
+#include <fstream>
 #include "Research.h"
 
 using namespace std;
@@ -33,7 +34,20 @@ void Research::generateData(TestElement* data, int size, int seed) {
     }
 }
 
+void Research::writeCsvHeader(ofstream& file) {
+    file << "structure,operation,size,series_count,copies,avg_time_ns" << endl;
+}
+
 void Research::run() {
+    ofstream file("results_summary.csv");
+
+    if (!file.is_open()) {
+        cout << "Nie udalo sie otworzyc pliku results_summary.csv" << endl;
+        return;
+    }
+
+    writeCsvHeader(file);
+
     int size = 10;
     int seed = BASE_SEED;
 
@@ -42,12 +56,19 @@ void Research::run() {
     generateData(data, size, seed);
 
     cout << endl;
-    cout << "Test generowania danych do badan: "<< endl;
+    cout << "Test generowania danych do badan:" << endl;
 
     for (int i = 0; i < size; i++) {
-        cout << i << ": key = " << data[i].key <<", value = " << data[i].value << endl;
+        cout << i << ": key = " << data[i].key
+             << ", value = " << data[i].value << endl;
     }
 
     delete[] data;
+
+    file.close();
+
+    cout << "Utworzono plik results_summary.csv" << endl;
+
 }
+
 
